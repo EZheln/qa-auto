@@ -20,5 +20,10 @@
   "devDependencies": {
     "chai": "^4.3.7",
     "mocha": "^10.2.0"
+  },
+  "dependencies": {
+    "@octokit/request-error": "^3.0.3",
+    "@octokit/rest": "^19.0.7",
+    "@octokit/webhooks": "^11.0.0"
   }
 }
