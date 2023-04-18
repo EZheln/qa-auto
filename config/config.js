@@ -8,13 +8,13 @@ class Config {
         Config.instance = this;
         this.config_dict = {};
         this.target = process.env.TARGET; 
-        this.providers = new ConfigFromJsonProvider(this.target)
+        this.provider = new ConfigFromJsonProvider(this.target)
         this.register("BASE_URL_API");
         this.register("BASE_URL_UI");
         return this;
     }
     register(name){
-        const value = this.providers.get(name);
+        const value = this.provider.get(name);
         if (value !== undefined){
             this.config_dict[name] = value
         }
@@ -25,7 +25,7 @@ class Config {
     }
     get(key) {
         const value = this.config_dict[key];
-        if (value === undefined){
+        if (!value){
             console.log(`Variable ${key} is not set in config`)
         }
         return this.config_dict[key];
@@ -33,10 +33,3 @@ class Config {
 }
 const config = new Config();
 export default config
-
-
-//check for singletone
-// const count1 = new Config();
-// const count2 = new Config();
-// console.log(count1 === count2);
-// console.log(count2);
